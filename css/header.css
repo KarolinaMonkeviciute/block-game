@@ -1,0 +1,25 @@
+header{
+    background-color: aqua;
+    height: 10vh;
+    display: none;
+}
+header.show{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+}
+.player-name{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.score{
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+.timer{
+    font-size: 2rem;
+    padding-top: 0.5rem;
+    font-weight: bold;
+    color: rgb(210, 70, 70);
+}

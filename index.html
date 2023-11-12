@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block game</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/game-area.css">
+</head>
+<body>
+    <header id="header"></header>
+   <main id="block-area"><div id="start-container" class="start-container">
+        <h1>Simple block game</h1>
+        <h2>Enter your name:</h2>
+        <label hidden for="name">Name</label>
+        <form>
+        <input class="name-input" type="text" id="name" name="name" placeholder="Name..." required>
+        <button id="play-btn" type="submit" class="play-btn">Play!</button>
+        </form>
+    </div>
+</main>
+    <script type="module" src="./js/main.js" defer></script>
+</body>
+</html>

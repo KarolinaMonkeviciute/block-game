@@ -14,6 +14,7 @@ if (playBtn){
         headerDOM.classList.add('show');
         renderHeader(headerDOM);
         renderBlock(blockArea);
+        game();
         ev.preventDefault();
     })
 }
@@ -33,51 +34,46 @@ function renderHeader(headerDOM){
         </div>`;
     }
 }
+        function renderBlock(blockArea){
 
-function renderBlock(blockArea){
-    timer();
+            if (blockArea){
+             blockArea.innerHTML = `<div id="block" class="block"></div>`;
+             
+        }}
 
-    if (blockArea){
-        blockArea.innerHTML = `<div id="block" class="block"></div>`;
-
+        function game(){
+          const timerElement = document.getElementById('timer');
+          let playerScore = 0;
+          let computerScore = 0;
+        let clicked = false;
+        let time = 30;
         const block = document.getElementById('block');
-        setInterval(() => {
-            const randomColor = Math.random().toString(16).slice(2, 8);
-            block.style.backgroundColor = '#' + randomColor;
-            block.style.left = getRandom(0, 1200 - 50)+'px';
-            block.style.top = getRandom(0, 500 - 50)+'px';
-        }, 1000)
-    }
-
-    let playerScore = 0;
-    let computerScore = 0;
-    let clicked = false;
-
-    block.addEventListener('click', () => {
-        playerScore++;
+        block.addEventListener('click', () => {
         clicked = true;
-        document.getElementById('player-score').textContent = playerScore;
     })
-    document.addEventListener('click', (ev) =>{
-        if (ev.target.id !== 'block' && clicked === false){
-        computerScore++;
-        document.getElementById('computer-score').textContent = computerScore;
-        }
-    })
-}
 
-function timer(){
-     const timerElement = document.getElementById('timer');
-     let time = 30;   
-
-     function countSeconds(){
-        if (time === 0){
-            clearTimeout(countdown);
-            //add results
-        } else {
-            timerElement.innerHTML = time;
+    let intervalId = setInterval(() => {
+        if (time > 0){
             time--;
+            timerElement.innerHTML = time;
+        } else {
+            clearInterval(intervalId);
+            return;
         }
-      }
-      const countdown = setInterval(countSeconds, 1000);
-    }
+        if (clicked === true){
+            playerScore++;
+        } else {
+            computerScore++;
+        }
+        document.getElementById('player-score').textContent = playerScore;
+        document.getElementById('computer-score').textContent = computerScore; 
+        const randomColor = Math.random().toString(16).slice(2, 8);
+        block.style.backgroundColor = '#' + randomColor;
+        block.style.left = getRandom(0, 1200 - 50)+'px';
+        block.style.top = getRandom(0, 500 - 50)+'px';
+
+        clicked = false;
+        }, 1000)  
+        }
+    
+

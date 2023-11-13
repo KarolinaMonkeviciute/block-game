@@ -7,6 +7,9 @@ const nameValue = document.getElementById('name');
 const blockArea = document.getElementById('block-area');
 const getRandom = (min, max) => Math.floor(Math.random()*(max-min+1)+min);
 
+let playerScore = 0;
+let computerScore = 0;
+let round = 0;
 
 if (playBtn){
     playBtn.addEventListener('click', (ev) => {
@@ -14,7 +17,7 @@ if (playBtn){
         headerDOM.classList.add('show');
         renderHeader(headerDOM);
         renderBlock(blockArea);
-        game();
+        startRound();
         ev.preventDefault();
     })
 }
@@ -41,10 +44,9 @@ function renderHeader(headerDOM){
              
         }}
 
-        function game(){
-          const timerElement = document.getElementById('timer');
-          let playerScore = 0;
-          let computerScore = 0;
+        function startRound(){
+        round++;
+        const timerElement = document.getElementById('timer');
         let clicked = false;
         let time = 30;
         const block = document.getElementById('block');
@@ -58,6 +60,9 @@ function renderHeader(headerDOM){
             timerElement.innerHTML = time;
         } else {
             clearInterval(intervalId);
+            if (round < 10){
+                startRound();
+            }
             return;
         }
         if (clicked === true){
@@ -75,5 +80,4 @@ function renderHeader(headerDOM){
         clicked = false;
         }, 1000)  
         }
-    
 

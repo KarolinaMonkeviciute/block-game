@@ -35,6 +35,8 @@ function renderHeader(headerDOM){
 }
 
 function renderBlock(blockArea){
+    timer();
+
     if (blockArea){
         blockArea.innerHTML = `<div id="block" class="block"></div>`;
 
@@ -47,8 +49,6 @@ function renderBlock(blockArea){
         }, 1000)
     }
 
-    timer();
-
     let playerScore = 0;
     let computerScore = 0;
     let clicked = false;
@@ -59,11 +59,11 @@ function renderBlock(blockArea){
         document.getElementById('player-score').textContent = playerScore;
     })
     document.addEventListener('click', (ev) =>{
-        if (ev.target.id !== 'block' && clicked === false)
+        if (ev.target.id !== 'block' && clicked === false){
         computerScore++;
         document.getElementById('computer-score').textContent = computerScore;
+        }
     })
-    clicked = false;
 }
 
 function timer(){
